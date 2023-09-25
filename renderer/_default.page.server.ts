@@ -1,20 +1,20 @@
-import { renderToNodeStream } from '@vue/server-renderer'
-import { escapeInject } from 'vike/server'
-import { createApp } from './app'
-import { getPageTitle } from './getPageTitle'
-import type { PageContext } from './types'
-import type { PageContextBuiltInServer } from 'vike/types'
+import type { PageContext } from "./types";
+import type { PageContextBuiltInServer } from "vike/types";
+import { createApp } from "./app";
+import { escapeInject } from "vike/server";
+import { getPageTitle } from "./getPageTitle";
+import { renderToNodeStream } from "@vue/server-renderer";
 
-export { passToClient }
-export { render }
+export { passToClient };
+export { render };
 
-const passToClient = ['pageProps', 'documentProps']
+const passToClient = ["pageProps", "documentProps"];
 
 async function render(pageContext: PageContextBuiltInServer & PageContext) {
-  const app = createApp(pageContext)
-  const stream = renderToNodeStream(app)
+  const app = createApp(pageContext);
+  const stream = renderToNodeStream(app);
 
-  const title = getPageTitle(pageContext)
+  const title = getPageTitle(pageContext);
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html>
@@ -24,12 +24,12 @@ async function render(pageContext: PageContextBuiltInServer & PageContext) {
       <body>
         <div id="app">${stream}</div>
       </body>
-    </html>`
+    </html>`;
 
   return {
     documentHtml,
     pageContext: {
-      enableEagerStreaming: true
-    }
-  }
+      enableEagerStreaming: true,
+    },
+  };
 }
