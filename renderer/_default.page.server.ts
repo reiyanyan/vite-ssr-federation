@@ -20,6 +20,7 @@ async function render(pageContext: PageContextBuiltInServer & PageContext) {
     <html>
       <head>
         <title>${title}</title>
+        <script src="/datafeeds/udf/bundle.js"></script>
       </head>
       <body>
         <div id="app">${stream}</div>

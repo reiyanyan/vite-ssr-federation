@@ -8,6 +8,7 @@
       <Link href="/markdown">Markdown</Link>
       <Link href="/star-wars">Data Fetching</Link>
       <Link href="/hello">Routing</Link>
+      <Link href="/tradingview">TradingView</Link>
     </div>
     <!-- <div class="content"><slot /></div> -->
     <div id="page-container">
